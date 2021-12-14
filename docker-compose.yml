@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
   frontend:
-    container_name: 
-    image: 
+    container_name:
+    image:
     build:
       context: frontend
       dockerfile: Dockerfile
@@ -17,9 +17,35 @@ services:
     depends_on:
       - api
   api:
-    image: 
-    build:
-      context: 
-      dockerfile: Dockerfile
+    image:
+    container_name: api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    networks:
+      - app-network
+    volumes:
+      - ./app:/srv/app
     ports:
-      - '5900:80'
+      - '1337:1337'
+
+  db:
+    image:
+    container_name: db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      INITDB_ROOT_USERNAME: ${INITDB_ROOT_USERNAME}
+      INITDB_ROOT_PASSWORD: ${INITDB_ROOT_PASSWORD}
+    networks:
+      - app-network
+    volumes:
+      - data:/data/db
+    ports:
+      - "27017:27017"
