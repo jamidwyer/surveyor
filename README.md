@@ -23,9 +23,7 @@ Clone your frontend to yourapp-frontend:
 
 Or add a repo you're developing as a submodule:
 
-```
-git submodule add https://github.com/[user]/yourapp-frontend.git frontend
-```
+`git submodule add https://github.com/[user]/yourapp-frontend.git frontend`
 
 #### API
 
@@ -35,9 +33,7 @@ Clone your api to yourapp-api:
 
 Or add a repo you're developing as a submodule:
 
-```
-git submodule add https://github.com/[user]/yourapp-api.git api
-```
+`git submodule add https://github.com/[user]/yourapp-api.git api`
 
 #### Database
 
@@ -47,9 +43,7 @@ Clone your yourapp-db to db:
 
 Or add a repo you're developing as a submodule:
 
-```bash
-git submodule add https://github.com/[user]/yourapp-db.git db
-```
+`git submodule add https://github.com/[user]/yourapp-db.git db`
 
 #### Docker setup
 
@@ -117,7 +111,7 @@ volumes:
   data:
 ```
 
-Copy the .env example for your database to .env adn fill in the values.
+Copy the .env example for your database to .env and fill in the values.
 
 ### Run
 
