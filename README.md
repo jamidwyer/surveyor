@@ -10,10 +10,10 @@ Docker
 
 Clone this repo to yourapp-app:
 
-```bash
-git clone https://github.com/jamidwyer/docker-compose-scaffold.git yourapp-app`
+```
+git clone https://github.com/jamidwyer/docker-compose-scaffold.git yourapp-app
 cd yourapp-app
-s```
+```
 
 #### Frontend
 
@@ -23,10 +23,8 @@ Clone your frontend to yourapp-frontend:
 
 Or add a repo you're developing as a submodule:
 
-```bash
-mkdir frontend
-cd frontend
-git submodule add frontend https://github.com/[user]/yourapp-frontend.git
+```
+git submodule add https://github.com/[user]/yourapp-frontend.git frontend
 ```
 
 #### API
@@ -37,10 +35,8 @@ Clone your api to yourapp-api:
 
 Or add a repo you're developing as a submodule:
 
-```bash
-mkdir api
-cd api
-git submodule add frontend https://github.com/[user]/yourapp-api.git
+```
+git submodule add https://github.com/[user]/yourapp-api.git api
 ```
 
 #### Database
@@ -52,9 +48,7 @@ Clone your yourapp-db to db:
 Or add a repo you're developing as a submodule:
 
 ```bash
-mkdir db
-cd db
-git submodule add db https://github.com/[user]/yourapp-db.git
+git submodule add https://github.com/[user]/yourapp-db.git db
 ```
 
 #### Docker setup
