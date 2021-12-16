@@ -10,21 +10,54 @@ Docker
 
 Clone this repo to yourapp-app:
 
-`git clone https://github.com/jamidwyer/docker-compose-scaffold.git yourapp-app`
+```bash
+git clone https://github.com/jamidwyer/docker-compose-scaffold.git yourapp-app`
+cd yourapp-app
+s```
 
-`cd yourapp-app`
+#### Frontend
 
 Clone your frontend to yourapp-frontend:
 
 `git clone https://github.com/[user]/yourapp-frontend.git frontend`
 
+Or add a repo you're developing as a submodule:
+
+```bash
+mkdir frontend
+cd frontend
+git submodule add frontend https://github.com/[user]/yourapp-frontend.git
+```
+
+#### API
+
 Clone your api to yourapp-api:
 
 `git clone https://github.com/[user]/yourapp-api.git api`
 
-Clone your db to yourapp-db:
+Or add a repo you're developing as a submodule:
+
+```bash
+mkdir api
+cd api
+git submodule add frontend https://github.com/[user]/yourapp-api.git
+```
+
+#### Database
+
+Clone your yourapp-db to db:
 
 `git clone https://github.com/[user]/yourapp-db.git db`
+
+Or add a repo you're developing as a submodule:
+
+```bash
+mkdir db
+cd db
+git submodule add db https://github.com/[user]/yourapp-db.git
+```
+
+#### Docker setup
 
 Fill in the blanks in docker-compose.yml.
 
