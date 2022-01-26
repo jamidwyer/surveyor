@@ -1,128 +1,80 @@
-## Docker Compose scaffold
+## Surveyor
 
-Work in progress. Scaffold to bring your own frontend, api, and db in docker-compose setup.
+Surveys users, saves the info to a Postgres database, and generates a report.
+
+This is a prototype, but if you want to use it, you'll need jQuery and Bootstrap. Then include the following in the source of your page:
+
+```html
+<a href="/survey-modal.html" class="btn btn-primary btn-lg" id="surveyLink">
+  Feedback
+</a>
+<div
+  class="modal"
+  id="survey-modal-container"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="surveyModalLabel"
+  aria-hidden="true"
+></div>
+<script src="survey-modal.js"></script>
+```
 
 ### Requirements
 
-Docker
+Node
+Postgres
 
 ### Setup
 
 Clone this repo to yourapp-app:
 
+```bash
+git clone https://github.com/jamidwyer/surveyor
+cd surveyor
 ```
-git clone https://github.com/jamidwyer/docker-compose-scaffold.git yourapp-app
-cd yourapp-app
-```
-
-#### Frontend
-
-Clone your frontend to yourapp-frontend:
-
-`git clone https://github.com/[user]/yourapp-frontend.git frontend`
-
-Or add a repo you're developing as a submodule:
-
-`git submodule add https://github.com/[user]/yourapp-frontend.git frontend`
-
-#### API
-
-Clone your api to yourapp-api:
-
-`git clone https://github.com/[user]/yourapp-api.git api`
-
-Or add a repo you're developing as a submodule:
-
-`git submodule add https://github.com/[user]/yourapp-api.git api`
-
-#### Database
-
-Clone your yourapp-db to db:
-
-`git clone https://github.com/[user]/yourapp-db.git db`
-
-Or add a repo you're developing as a submodule:
-
-`git submodule add https://github.com/[user]/yourapp-db.git db`
-
-#### Docker setup
-
-Fill in the blanks in docker-compose.yml.
-
-As an example, using a custom frontend cloned into  the frontend directory, the base strapi image for your API and the base mysql image for your database could be:
-
-```yml
-version: '3.4'
-
-services:
-  frontend:
-    container_name: frontend
-    image: react-web-ui
-    build:
-      context: frontend
-      dockerfile: Dockerfile
-    ports:
-      - 5902:80
-    stdin_open: true
-    environment:
-      - backendUrl=http://api
-      - CHOKIDAR_USEPOLLING=true
-    command: npm start
-    depends_on:
-      - api
-
-  api:
-    image: strapi/strapi
-    container_name: api
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: ${DATABASE_HOST}
-      DATABASE_PORT: ${DATABASE_PORT}
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_SSL: 'false'
-    volumes:
-      - ./app:/srv/app
-    ports:
-      - '1337:1337'
-    depends_on:
-      - db
-
-  db:
-    image: mysql
-    command: mysqld --default-authentication-plugin=mysql_native_password
-    container_name: db
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DATABASE: ${DATABASE_NAME}
-      MYSQL_USER: ${DATABASE_USERNAME}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-    volumes:
-      - data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-
-volumes:
-  data:
-```
-
-Copy the .env example for your database to .env and fill in the values.
 
 ### Run
 
-`docker-compose build`
+`npm start`
 
-`docker-compose up`
+### Routes
 
-You can see api calls at http://0.0.0.0:1337/ and the frontend at http://0.0.0.0:5900/
+#### Landing page
 
-### TODO
+http://localhost:9000/index.html
 
-Submodules.
+#### About page
 
-I'd love to make a cli that takes in urls to the frontend, api, and db and builds docker-compose.yml.
+http://localhost:9000/about.html
+
+#### Questions endpoint
+
+http://localhost:9000/api/questions
+
+#### Answers endpoint
+
+http://localhost:9000/api/answers
+
+### Roadmap
+
+- Build form
+- Save on form submit
+- Generate report
+- Save path user clicked from
+- Validation
+- Tests
+- Live reload for local dev
+- Development/Staging/Production
+- Design
+- Deploy
+- DB persistence
+- DB backups
+- Security audit
+- Prettier
+- Better bundle
+- Improve data models if needed
+- Clean urls
+- API docs
+- Microservices / Docker
+- ES6
+- Check for unique user
