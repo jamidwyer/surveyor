@@ -1,0 +1,27 @@
+{
+  "name": "surveyor",
+  "version": "1.0.0",
+  "description": "Collects user feedback.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamidwyer/surveyor.git"
+  },
+  "author": "Jami Dwyer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamidwyer/surveyor/issues"
+  },
+  "homepage": "https://github.com/jamidwyer/surveyor#readme",
+  "dependencies": {
+    "dotenv": "^14.3.0",
+    "express": "^4.17.2",
+    "knex": "^1.0.1",
+    "pg": "^8.7.1",
+    "postgres": "^1.0.2"
+  }
+}
