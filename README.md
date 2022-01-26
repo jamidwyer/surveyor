@@ -1,4 +1,4 @@
-## Surveyor
+# Surveyor
 
 Surveys users, saves the info to a Postgres database, and generates a report.
 
@@ -18,6 +18,8 @@ This is a prototype, but if you want to use it, you'll need jQuery and Bootstrap
 ></div>
 <script src="survey-modal.js"></script>
 ```
+
+## Development
 
 ### Requirements
 
@@ -70,6 +72,7 @@ http://localhost:9000/api/answers
 - DB persistence
 - DB backups
 - Security audit
+- Internationalization
 - Prettier
 - Better bundle
 - Improve data models if needed
