@@ -72,7 +72,7 @@ http://localhost:9000/api/survey_answers
 - form sometimes loads, sometimes doesn't
 - ESLint
 - Validation
-- src folder
+- move to src folder and build into public (webpack...)
 - naming consistency
 - Development/Staging/Production
 - Design
@@ -84,7 +84,6 @@ http://localhost:9000/api/survey_answers
 - Use questions endpoint instead of hardcoding
 - Internationalization
 - Prettier
-- Better bundle
 - Copy report in CSV
 - Improve data models if needed
 - Clean urls
