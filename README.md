@@ -27,11 +27,12 @@ After jQuery is included, you'll also need:
 ### Requirements
 
 Node
+
 Postgres
 
 ### Setup
 
-Clone this repo to yourapp-app:
+Clone this repo:
 
 ```bash
 git clone https://github.com/jamidwyer/surveyor
