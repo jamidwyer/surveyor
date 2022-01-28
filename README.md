@@ -16,8 +16,11 @@ This is a prototype, but if you want to use it, you'll need jQuery and Bootstrap
   aria-labelledby="surveyModalLabel"
   aria-hidden="true"
 ></div>
-<script src="survey-modal.js"></script>
 ```
+
+After jQuery is included, you'll also need:
+
+`<script src="survey-modal.js"></script>`
 
 ## Development
 
@@ -43,38 +46,45 @@ cd surveyor
 
 #### Landing page
 
-http://localhost:9000/index.html
+http://localhost:9000/
 
 #### About page
 
 http://localhost:9000/about.html
 
+#### Report page
+
+http://localhost:9000/report.html
+
 #### Questions endpoint
 
-http://localhost:9000/api/questions
+http://localhost:9000/api/survey_questions
 
 #### Answers endpoint
 
-http://localhost:9000/api/answers
+http://localhost:9000/api/survey_answers
 
 ### Roadmap
 
-- Build form
-- Save on form submit
-- Generate report
-- Save path user clicked from
-- Validation
 - Tests
-- Live reload for local dev
+- survey-modal.js less awful
+- form sometimes loads, sometimes doesn't
+- ESLint
+- Validation
+- src folder
+- naming consistency
 - Development/Staging/Production
 - Design
+- Password required for answers service
 - Deploy
 - DB persistence
 - DB backups
 - Security audit
+- Use questions endpoint instead of hardcoding
 - Internationalization
 - Prettier
 - Better bundle
+- Copy report in CSV
 - Improve data models if needed
 - Clean urls
 - API docs
