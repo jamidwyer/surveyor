@@ -43,6 +43,10 @@ cd surveyor
 
 `npm start`
 
+### Test
+
+`npm test`
+
 ### Routes
 
 #### Landing page
@@ -75,6 +79,7 @@ http://localhost:9000/api/survey_answers
 - move to src folder and build into public (webpack...)
 - naming consistency
 - Development/Staging/Production
+- move shareable util fxns
 - Design
 - Password required for answers service
 - Deploy
@@ -90,4 +95,5 @@ http://localhost:9000/api/survey_answers
 - API docs
 - Microservices / Docker
 - ES6
-- Check for unique user
+- Bootstrap gone
+- jQuery gone

@@ -1,15 +1,16 @@
-const surveyReport = {
-  init: function (settings) {
-    surveyReport.config = {
-      url: "/api/survey_answers",
-    };
-
-    $.extend(surveyReport.config, settings);
-
+const surveyReport = (function () {
+  let averageAge = 40;
+  let averageExperience = 2.5;
+  let maleDistribution = 49;
+  let femaleDistribution = 49;
+  let nonBinaryDistribution = 2;
+  let countryDistributions = [];
+  let totalResponses = 0;
+  const init = function (settings) {
     surveyReport.getData();
-  },
+  };
 
-  getData: function () {
+  const getData = function () {
     let that = this;
     $.ajax({
       type: "GET",
@@ -22,37 +23,32 @@ const surveyReport = {
         const experiences = data.map(function (value) {
           return value.experience;
         });
-        that.averageAge = that.calculateAverage(ages).toPrecision(4);
-        that.averageExperience = that
-          .calculateAverage(experiences)
-          .toPrecision(2);
+        averageAge = calculateAverage(ages).toPrecision(4);
+        averageExperience = calculateAverage(experiences).toPrecision(2);
         const genders = data.map((item) => item.gender);
-        that.maleDistribution = that.countOccurences(genders, "male");
-        that.femaleDistribution = that.countOccurences(genders, "female");
-        that.nonBinaryDistribution = that.countOccurences(
-          genders,
-          "non-binary"
-        );
+        maleDistribution = countOccurences(genders, "male");
+        femaleDistribution = countOccurences(genders, "female");
+        nonBinaryDistribution = countOccurences(genders, "non-binary");
         const countries = data.map((item) => item.country);
         const uniqueCountries = countries.filter(
           (item, i, ar) => ar.indexOf(item) === i
         );
-        that.countryDistributions = [];
+        countryDistributions = [];
         uniqueCountries.forEach((country) => {
           if (!country) return;
-          const countryCount = that.countOccurences(countries, country);
-          that.countryDistributions.push(
+          const countryCount = countOccurences(countries, country);
+          countryDistributions.push(
             "<div>" + country + ": " + countryCount + "</div>"
           );
         });
-        that.totalResponses = data.length;
+        totalResponses = data.length;
 
-        that.showData();
+        showData();
       },
     });
-  },
+  };
 
-  calculateAverage: function (array) {
+  const calculateAverage = function (array) {
     let total = 0;
     let notNull = 0;
     array.forEach((value) => {
@@ -62,27 +58,30 @@ const surveyReport = {
       }
     });
     return total / notNull;
-  },
+  };
 
-  countOccurences: function (array, value) {
+  const countOccurences = function (array, value) {
     return array.reduce((a, v) => (v === value ? a + 1 : a), 0);
-  },
+  };
 
-  findUniques: function (array, key) {
-    return array.map((item) => item[key]);
-  },
+  const showData = function () {
+    $("#survey-age-average").html(averageAge);
+    $("#survey-experience-average").html(averageExperience);
+    $("#survey-male-distribution").html(maleDistribution);
+    $("#survey-female-distribution").html(femaleDistribution);
+    $("#survey-non-binary-distribution").html(nonBinaryDistribution);
+    $("#survey-country-distribution").html(countryDistributions);
+    $("#survey-total-results").html(totalResponses);
+  };
 
-  buildCountryDistribution: function (country, count) {},
-
-  showData: function () {
-    $("#survey-age-average").html(this.averageAge);
-    $("#survey-experience-average").html(this.averageExperience);
-    $("#survey-male-distribution").html(this.maleDistribution);
-    $("#survey-female-distribution").html(this.femaleDistribution);
-    $("#survey-non-binary-distribution").html(this.nonBinaryDistribution);
-    $("#survey-country-distribution").html(this.countryDistributions);
-    $("#survey-total-results").html(this.totalResponses);
-  },
-};
+  return {
+    init: init,
+    getData: getData,
+    calculateAverage: calculateAverage,
+    countOccurences: countOccurences,
+  };
+})();
 
 $(document).ready(surveyReport.init);
+
+export default surveyReport;
