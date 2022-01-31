@@ -1,8 +1,9 @@
-$(document).ready(function () {
-  function manipIframe() {
-    el = $("body", $("#survey-iframe").contents());
-    if (el.length != 1) {
-      setTimeout(manipIframe, 100);
+const surveyModal = (function () {
+  let container = null;
+  const init = function () {
+    container = $("body", $("#survey-iframe").contents());
+    if (container.length != 1) {
+      setTimeout(init, 100);
       return;
     }
     const goodSchema = {
@@ -306,9 +307,18 @@ $(document).ready(function () {
           }
         },
       });
-  }
+  };
+  const open = function () {};
+  const close = function () {};
+  return {
+    init: init,
+    open: open,
+    close: close,
+  };
+})();
 
-  manipIframe();
+$(document).ready(function () {
+  surveyModal.init();
 
   $("#surveyLink").click(function (e) {
     e.preventDefault();
@@ -328,3 +338,5 @@ $(document).ready(function () {
     $(window.parent.document).find("#survey-modal-container").html("");
   });
 });
+
+export default surveyModal;
