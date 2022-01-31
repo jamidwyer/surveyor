@@ -11,7 +11,6 @@ const surveyReport = (function () {
   };
 
   const getData = function () {
-    let that = this;
     $.ajax({
       type: "GET",
       url: "http://localhost:9000/api/survey_answers",

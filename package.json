@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon babel-node ./src",
     "dev:start": "nodemon --exec babel-node ./src",
-    "test": "jest --coverage"
+    "test": "jest --coverage --env=jsdom"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "body-parser": "^1.19.1",
     "dotenv": "^14.3.0",
     "express": "^4.17.2",
+    "jquery": "^3.6.0",
     "knex": "^1.0.1",
     "pg": "^8.7.1",
     "postgres": "^1.0.2"
@@ -31,10 +32,17 @@
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
     "@babel/node": "^7.16.8",
+    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "jest": "^27.4.7",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "./src/jest-setup.js"
+    ]
   }
 }

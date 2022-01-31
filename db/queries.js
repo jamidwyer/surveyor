@@ -7,10 +7,14 @@ const database = knex(connection[process.env.NODE_ENV || "development"]);
 
 const queries = {
   getSurveyQuestions() {
-    return database("survey_questions");
+    return database("survey_questions").catch((err) => {
+      return { status: 400, message: "unable to get survey questions", err };
+    });
   },
   getSurveyAnswers() {
-    return database("survey_answers");
+    return database("survey_answers").catch((err) => {
+      return { status: 400, message: "unable to get survey answers", err };
+    });
   },
   postSurveyAnswers(payload) {
     return database("survey_answers")
