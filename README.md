@@ -78,6 +78,7 @@ http://localhost:9000/api/survey_answers
 - Validation
 - move to src folder and build into public (webpack...)
 - error handling
+- redirect \* in express
 - naming consistency
 - Development/Staging/Production
 - move shareable util fxns

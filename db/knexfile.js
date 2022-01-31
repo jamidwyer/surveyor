@@ -1,9 +1,20 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-module.exports = {
+const connection = {
+  test: {
+    client: "postgresql",
+    connection:
+      "postgres://" +
+      process.env.DB_USER +
+      ":" +
+      process.env.DB_PASSWORD +
+      "@localhost:5432/ancestry",
+  },
+
   development: {
     client: "postgresql",
     connection:
@@ -39,3 +50,5 @@ module.exports = {
     },
   },
 };
+
+export default connection;

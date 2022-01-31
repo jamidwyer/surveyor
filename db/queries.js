@@ -1,7 +1,11 @@
-const connection = require("./knexfile")[process.env.NODE_ENV || "development"];
-const database = require("knex")(connection);
+import knex from "knex";
+import dotenv from "dotenv";
+import connection from "./knexfile.js";
+dotenv.config();
 
-module.exports = {
+const database = knex(connection[process.env.NODE_ENV || "development"]);
+
+const queries = {
   getSurveyQuestions() {
     return database("survey_questions");
   },
@@ -19,3 +23,5 @@ module.exports = {
       });
   },
 };
+
+export default queries;

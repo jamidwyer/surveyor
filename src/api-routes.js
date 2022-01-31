@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const queries = require("../db/queries");
+import { Router } from "express";
+import queries from "../db/queries.js";
 
 const router = new Router();
 router.get("/survey_questions", (req, res) => {
@@ -15,4 +15,4 @@ router.get("/survey_answers", (req, res) => {
   queries.getSurveyAnswers().then((results) => res.send(results));
 });
 
-module.exports = router;
+export default router;
