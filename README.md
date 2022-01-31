@@ -77,6 +77,7 @@ http://localhost:9000/api/survey_answers
 - ESLint
 - Validation
 - move to src folder and build into public (webpack...)
+- error handling
 - naming consistency
 - Development/Staging/Production
 - move shareable util fxns
