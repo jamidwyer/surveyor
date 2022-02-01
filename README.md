@@ -72,11 +72,12 @@ http://localhost:9000/api/survey_answers
 ### Roadmap
 
 - Tests
-- survey-modal.js less awful
-- form sometimes loads, sometimes doesn't
+- survey-modal.js
+  - form out
+    - add webpack for bundling
+      - move js to src and build one survey-modal.js file into public
 - ESLint
 - Validation
-- move to src folder and build into public (webpack...)
 - error handling
 - redirect \* in express
 - naming consistency
