@@ -11,7 +11,12 @@ exports.seed = function (knex) {
         { id: 1, question: "Name", required: true, type: "text" },
         { id: 2, question: "Email", required: true, type: "text" },
         { id: 3, question: "Age", type: "integer" },
-        { id: 4, question: "Gender", type: "text", field_type: "radio" },
+        {
+          id: 4,
+          question: "Gender",
+          type: "text",
+          field_type: "radio",
+        },
         {
           id: 5,
           question: "Country",

@@ -6,7 +6,7 @@ const surveyReport = (function () {
   let nonBinaryDistribution = 2;
   let countryDistributions = [];
   let totalResponses = 0;
-  const init = function (settings) {
+  const init = function () {
     surveyReport.getData();
   };
 

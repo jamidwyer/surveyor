@@ -1,10 +1,10 @@
 const surveyModal = (function () {
   const init = function () {
-    container = $("body", $("#survey-iframe").contents());
-    if (container.length != 1) {
-      setTimeout(init, 100);
-      return;
-    }
+    $("#survey-modal-container").html(
+      '<iframe id="survey-iframe" src="survey-modal.html" height="600px" width="800px" frameborder="0"></iframe>'
+    );
+  };
+  const open = function () {
     const goodSchema = {
       name: {
         type: "string",
@@ -275,7 +275,8 @@ const surveyModal = (function () {
       .find("#survey-form")
       .jsonForm({
         schema: goodSchema,
-        onSubmit: function (errors, values) {
+        onSubmit(errors, values) {
+          console.log(errors, values);
           $.ajax({
             url: "/api/survey_answers",
             type: "POST",
@@ -296,6 +297,7 @@ const surveyModal = (function () {
         },
       });
 
+    console.log("should show");
     $("#survey-modal-container").modal("show");
     $(window.parent.document)
       .find("#survey-modal-container")
@@ -318,21 +320,21 @@ const surveyModal = (function () {
       );
   };
   return {
-    init: init,
-    open: open,
-    close: close,
+    init,
+    open,
+    close,
   };
 })();
 
-$(function () {
+$(() => {
   surveyModal.init();
 
-  $("#surveyLink").on("click", function (e) {
+  $("#surveyLink").on("click", (e) => {
     e.preventDefault();
     surveyModal.open();
   });
 
-  $("#surveyClose").on("click", function (e) {
+  $("#surveyClose").on("click", (e) => {
     e.preventDefault();
     surveyModal.close();
   });

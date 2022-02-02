@@ -72,6 +72,8 @@ http://localhost:9000/api/survey_answers
 ### Roadmap
 
 - Tests
+  - jest isn't understanding ES6 module imports
+    - add webpack
 - survey-modal.js
   - form out
     - add webpack for bundling
