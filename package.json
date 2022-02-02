@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon babel-node ./src",
     "dev:start": "nodemon --exec babel-node ./src",
-    "test": "jest --coverage --env=jsdom"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",

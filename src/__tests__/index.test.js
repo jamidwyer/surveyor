@@ -1,5 +1,5 @@
 import appMock from "../app";
-require("../index.js");
+import "../index.js";
 
 jest.mock("../app");
 

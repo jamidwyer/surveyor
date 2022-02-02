@@ -81,6 +81,8 @@ const surveyReport = (function () {
   };
 })();
 
-$(document).ready(surveyReport.init);
+$(function () {
+  surveyReport.init();
+});
 
 export default surveyReport;

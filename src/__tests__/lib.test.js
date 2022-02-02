@@ -1,4 +1,4 @@
-const { logger } = require("../lib.js");
+import { logger } from "../lib.js";
 
 console.log = jest.fn();
 
@@ -8,6 +8,18 @@ describe("logger", function () {
   });
 
   it("should log a well-formed request", function () {
+    const req = {
+      method: "GET",
+      url: "/",
+      body: {},
+    };
+    const res = { body: {} };
+    const next = () => {};
+    logger(req, res, next);
+    expect(console.log).toHaveBeenCalled();
+  });
+
+  it("should error", function () {
     const req = {
       method: "POST",
       url: "/",
