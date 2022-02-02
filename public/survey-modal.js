@@ -1,5 +1,4 @@
 const surveyModal = (function () {
-  let container = null;
   const init = function () {
     container = $("body", $("#survey-iframe").contents());
     if (container.length != 1) {
@@ -268,15 +267,6 @@ const surveyModal = (function () {
       },
     ];
 
-    function closeWindow() {
-      e.preventDefault();
-
-      $(window.parent.document).find("#survey-modal-container").modal("hide");
-      $(window.parent.document).find("body").removeClass("modal-open");
-      $(window.parent.document).find(".modal-backdrop").remove();
-      $(window.parent.document).find("#survey-modal-container").html("");
-    }
-
     const $modalContent = $("#survey-iframe")
       .contents()
       .find("#survey-modal-content");
@@ -286,7 +276,6 @@ const surveyModal = (function () {
       .jsonForm({
         schema: goodSchema,
         onSubmit: function (errors, values) {
-          console.log(errors, values);
           $.ajax({
             url: "/api/survey_answers",
             type: "POST",
@@ -294,7 +283,6 @@ const surveyModal = (function () {
             data: values,
           });
           if (errors) {
-            console.log("errors", errors);
             $("#survey-result").html("<p>Sorry, that didn't work.</p>");
           } else {
             $modalContent.html();
@@ -307,9 +295,28 @@ const surveyModal = (function () {
           }
         },
       });
+
+    $("#survey-modal-container").modal("show");
+    $(window.parent.document)
+      .find("#survey-modal-container")
+      .css({ display: "block" });
   };
-  const open = function () {};
-  const close = function () {};
+  const close = function () {
+    $(window.parent.document).find("#survey-modal-container").modal("hide");
+    $(window.parent.document)
+      .find("#survey-modal-container")
+      .removeClass("show");
+    $(window.parent.document)
+      .find("#survey-modal-container")
+      .css({ display: "none" });
+    $(window.parent.document).find("body").removeClass("modal-open");
+    $(window.parent.document).find(".modal-backdrop").remove();
+    $(window.parent.document)
+      .find("#survey-modal-container")
+      .html(
+        '<iframe id="survey-iframe" src="survey-modal.html" height="600px" width="800px" frameborder="0"></iframe>'
+      );
+  };
   return {
     init: init,
     open: open,
@@ -317,25 +324,17 @@ const surveyModal = (function () {
   };
 })();
 
-$(document).ready(function () {
+$(function () {
   surveyModal.init();
 
-  $("#surveyLink").click(function (e) {
+  $("#surveyLink").on("click", function (e) {
     e.preventDefault();
-    $("#survey-modal-container").append(
-      '<iframe id="survey-iframe" src="survey-modal.html" height="600px" width="800px" frameborder="0"></iframe>'
-    );
-
-    $("#survey-modal-container").modal("show");
+    surveyModal.open();
   });
 
-  $("#surveyClose").click(function (e) {
+  $("#surveyClose").on("click", function (e) {
     e.preventDefault();
-
-    $(window.parent.document).find("#survey-modal-container").modal("hide");
-    $(window.parent.document).find("body").removeClass("modal-open");
-    $(window.parent.document).find(".modal-backdrop").remove();
-    $(window.parent.document).find("#survey-modal-container").html("");
+    surveyModal.close();
   });
 });
 
